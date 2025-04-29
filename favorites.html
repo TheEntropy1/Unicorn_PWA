@@ -1,1 +1,23 @@
-<your favorites.html content here>
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex justify-between items-center mb-4">
+    <h2 class="text-2xl font-semibold">Liked Songs</h2>
+    <a href="{{ url_for('shuffle_favorites') }}">
+        <button>Shuffle</button>
+    </a>
+</div>
+
+{% if favorites %}
+    <div class="grid grid-cols-1 gap-4">
+        {% for song in favorites %}
+            <div class="card flex justify-between items-center">
+                <div onclick="playSong('{{ song.url }}')" class="cursor-pointer">
+                    <p class="font-semibold">{{ song.name }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-center text-gray-600">No liked songs yet. Start adding!</p>
+{% endif %}
+{% endblock %}
