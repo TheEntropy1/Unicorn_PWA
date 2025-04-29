@@ -1,1 +1,19 @@
-<your artist.html content here>
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-2xl font-semibold mb-4">New Releases</h2>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {% for album in releases %}
+        <div class="card flex items-center space-x-4">
+            <img src="{{ album.image[2].link }}" alt="{{ album.name }}" class="w-16 h-16 rounded-lg">
+            <div>
+                <p class="font-semibold">{{ album.name }}</p>
+                <p class="text-sm text-gray-600">{{ album.primaryArtists }}</p>
+                <a href="{{ url_for('album', id=album.id) }}">
+                    <button>View Album</button>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
