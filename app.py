@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, redirect, url_for, session
 import requests
 import os
@@ -8,6 +7,7 @@ app.secret_key = 'supersecreteprakharkey'
 
 API_URL = "https://saavn.dev/api"
 
+# Fetch data from API
 def fetch_data(endpoint, params=None):
     try:
         response = requests.get(f"{API_URL}/{endpoint}", params=params)
