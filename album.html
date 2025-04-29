@@ -1,1 +1,31 @@
-<your album.html content here>
+{% extends 'base.html' %}
+{% block content %}
+<main class="flex-1 p-4">
+  <h2 class="text-2xl mb-4">{{ album.name }}</h2>
+  <div class="flex mb-6">
+    <img src="{{ album.image[2].link }}" alt="{{ album.name }}" class="w-32 h-32 rounded-xl shadow-md mr-4">
+    <div>
+      <p class="text-lg font-semibold">{{ album.primaryArtists }}</p>
+      <p class="text-sm text-gray-600">{{ album.songCount }} Songs</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4">
+    {% for song in album.songs %}
+      <div class="flex items-center justify-between bg-white p-3 rounded-lg shadow-md">
+        <div onclick="playSong('{{ song.downloadUrl[4].link }}')" class="flex items-center cursor-pointer">
+          <img src="{{ song.image[2].link }}" alt="{{ song.name }}" class="w-12 h-12 rounded-md mr-4">
+          <div>
+            <p class="font-semibold">{{ song.name }}</p>
+            <p class="text-sm text-gray-600">{{ song.primaryArtists }}</p>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <button onclick="addToFavorites({name:'{{ song.name }}', url:'{{ song.downloadUrl[4].link }}'})" class="text-brown-800 underline">Favorite</button>
+          <button onclick="addToPlaylist({name:'{{ song.name }}', url:'{{ song.downloadUrl[4].link }}'})" class="text-brown-800 underline">Add</button>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}
