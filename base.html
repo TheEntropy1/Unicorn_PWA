@@ -1,1 +1,55 @@
-<your base.html content here>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Entropy - Free Music Streaming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function playSong(url) {
+            var audio = document.getElementById('audioPlayer');
+            audio.src = url;
+            audio.play();
+        }
+
+        function addToFavorites(song) {
+            fetch('/add_to_favorites', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(song)
+            }).then(response => location.reload());
+        }
+
+        function addToPlaylist(song) {
+            fetch('/add_to_playlist', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(song)
+            }).then(response => location.reload());
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Entropy 🎵</h1>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('favorites') }}">Favorites</a>
+        <a href="{{ url_for('playlist') }}">Playlist</a>
+        <a href="{{ url_for('new_releases') }}">New Releases</a>
+    </nav>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <p class="footer-credit">A Prakhar Solanki Production | Follow on Instagram: @prakhar.5898</p>
+</footer>
+
+<audio id="audioPlayer" controls style="width:100%;"></audio>
+
+</body>
+</html>
