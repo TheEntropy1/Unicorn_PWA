@@ -1,1 +1,34 @@
-<your index.html content here>
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="text-2xl mb-4 font-semibold">Trending Now</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+    {% for song in trending %}
+        <div class="card flex items-center space-x-4">
+            <img src="{{ song.image[2].link }}" alt="{{ song.name }}" class="w-16 h-16 rounded-lg">
+            <div>
+                <p class="font-semibold">{{ song.name }}</p>
+                <p class="text-sm text-gray-600">{{ song.primaryArtists }}</p>
+                <button onclick="playSong('{{ song.downloadUrl[4].link }}')">Play</button>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<h2 class="text-2xl mb-4 font-semibold">New Releases</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {% for album in new_releases %}
+        <div class="card flex items-center space-x-4">
+            <img src="{{ album.image[2].link }}" alt="{{ album.name }}" class="w-16 h-16 rounded-lg">
+            <div>
+                <p class="font-semibold">{{ album.name }}</p>
+                <p class="text-sm text-gray-600">{{ album.primaryArtists }}</p>
+                <a href="{{ url_for('album', id=album.id) }}">
+                    <button>View Album</button>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
