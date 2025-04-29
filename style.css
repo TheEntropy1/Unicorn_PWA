@@ -1,1 +1,61 @@
-<your style.css content here>
+body {
+    background-color: #f5f5dc; /* Beige */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    background-color: #5C4033; /* Dark Brown */
+    color: #ffffff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+nav a {
+    color: #5C4033;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+}
+
+nav a:hover {
+    background-color: #5C4033;
+    color: #ffffff;
+    border-radius: 8px;
+}
+
+main {
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+}
+
+button {
+    background-color: #5C4033;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4a3228;
+}
+
+.footer-credit {
+    font-size: 0.9rem;
+    color: #ddd;
+}
