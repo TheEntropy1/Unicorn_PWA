@@ -1,0 +1,1 @@
+<your service-worker.js content here>
